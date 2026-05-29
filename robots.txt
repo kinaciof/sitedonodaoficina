@@ -1,0 +1,5 @@
+# Dono da Oficina - Site Institucional
+User-agent: *
+Allow: /
+
+Sitemap: https://donodaoficina.com.br/sitemap.xml
