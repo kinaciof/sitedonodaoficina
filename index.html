@@ -182,6 +182,11 @@
         <a href="https://donodaoficina.web.app/" target="_blank" rel="noopener" class="btn btn--primary btn--small" id="cta-nav">Começar Grátis</a>
       </div>
 
+      <button class="navbar__toggle" id="menu-toggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
 
@@ -897,6 +902,7 @@
               Multi-idioma
             </div>
           </div>
+          <a href="https://donodaoficina.web.app/" target="_blank" rel="noopener" class="btn btn--outline" id="cta-plan-free">Começar Grátis</a>
         </div>
 
         <!-- Plano Essencial -->
@@ -950,6 +956,7 @@
               50 Consultas de Placas Mensal
             </div>
           </div>
+          <a href="https://donodaoficina.web.app/" target="_blank" rel="noopener" class="btn btn--outline" id="cta-plan-essencial">Assinar Essencial</a>
         </div>
 
         <!-- Plano Profissional (Mais Popular) -->
@@ -1023,6 +1030,7 @@
               Fidelidade de Clientes
             </div>
           </div>
+          <a href="https://donodaoficina.web.app/" target="_blank" rel="noopener" class="btn btn--primary" id="cta-plan-pro">Assinar Profissional</a>
         </div>
 
         <!-- Plano Ultra -->
@@ -1101,6 +1109,7 @@
               Programa Indique e Ganhe
             </div>
           </div>
+          <a href="https://donodaoficina.web.app/" target="_blank" rel="noopener" class="btn btn--outline pricing-card__btn--ultra" id="cta-plan-ultra">Assinar Ultra</a>
         </div>
 
       </div>
@@ -1332,6 +1341,11 @@
       function applyState() {
         btn.classList.toggle('active', annual);
         btn.setAttribute('aria-checked', annual);
+
+        var labelMonthly = document.getElementById('label-monthly');
+        var labelAnnual = document.getElementById('label-annual');
+        if (labelMonthly) labelMonthly.classList.toggle('active', !annual);
+        if (labelAnnual) labelAnnual.classList.toggle('active', annual);
 
         document.querySelectorAll('.pricing-card__amount[data-monthly]').forEach(function (el) {
           el.textContent = annual ? el.dataset.annual : el.dataset.monthly;

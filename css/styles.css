@@ -374,6 +374,12 @@ button {
   left: 0;
 }
 
+@media (min-width: 1025px) {
+  .navbar__mobile {
+    display: none !important;
+  }
+}
+
 .navbar__mobile a {
   font-size: 1.2rem;
   font-weight: 500;
@@ -385,7 +391,7 @@ button {
   color: var(--color-primary);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .navbar__logo span { display: none; }
   .navbar__toggle { display: flex; }
   .navbar__links, .navbar__cta { display: none; }
@@ -964,6 +970,74 @@ button {
 }
 
 /* ---------- PRICING ---------- */
+/* Billing Toggle Switch */
+.billing-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--bg-card-border);
+}
+
+.billing-toggle__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  transition: color var(--transition-fast);
+}
+
+.billing-toggle__label.active {
+  color: var(--text-primary);
+}
+
+.billing-toggle__switch {
+  width: 44px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  cursor: pointer;
+  transition: background-color var(--transition-base), border-color var(--transition-base);
+  padding: 0;
+  display: block;
+}
+
+.billing-toggle__switch.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.billing-toggle__thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform var(--transition-base);
+}
+
+.billing-toggle__switch.active .billing-toggle__thumb {
+  transform: translateX(22px);
+}
+
+.billing-toggle__badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  border: 1px solid rgba(234, 88, 12, 0.3);
+  padding: 1px 8px;
+  border-radius: var(--radius-full);
+  background: rgba(234, 88, 12, 0.1);
+  letter-spacing: 0.02em;
+}
+
 .pricing {
   padding: 100px 0;
 }
@@ -988,18 +1062,21 @@ button {
 }
 
 .pricing-card {
-  padding: 36px 32px;
+  padding: 24px 20px; /* Reduced padding for compact/minimalist layout */
   border-radius: var(--radius-xl);
   background: var(--bg-card);
   border: 1px solid var(--bg-card-border);
   position: relative;
   transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
 }
 
 .pricing-card:hover {
   transform: translateY(-4px);
 }
 
+.pricing-card--featured,
 .pricing-card.popular {
   border-color: var(--color-primary);
   box-shadow: 0 0 60px rgba(234, 88, 12, 0.12);
@@ -1021,6 +1098,22 @@ button {
   border-radius: var(--radius-full);
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
   color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.pricing-card__exclusive {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 16px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  color: #000;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1072,21 +1165,23 @@ button {
 .pricing-card__features {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 32px;
+  gap: 8px; /* Tighter vertical spacing */
+  margin-bottom: 24px;
+  flex-grow: 1; /* Ensure features area stretches and aligns buttons */
 }
 
 .pricing-card__feature {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.88rem;
+  gap: 8px; /* Compact gap */
+  font-size: 0.82rem; /* Compact font size for minimalist feel */
   color: var(--text-secondary);
+  line-height: 1.4;
 }
 
 .pricing-card__feature svg {
-  width: 18px;
-  height: 18px;
+  width: 14px; /* Compact checkmark/star */
+  height: 14px;
   color: var(--color-primary);
   flex-shrink: 0;
 }
@@ -1102,6 +1197,7 @@ button {
 
 .pricing-card .btn {
   width: 100%;
+  margin-top: auto; /* Push buttons to the bottom of the cards */
 }
 
 /* ---------- FAQ ---------- */
