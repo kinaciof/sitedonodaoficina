@@ -189,6 +189,22 @@ button {
   box-shadow: 0 8px 32px rgba(234, 88, 12, 0.45);
 }
 
+.pricing-card__btn--popular:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(234, 88, 12, 0.3);
+}
+
+.pricing-card__btn--ultra {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  color: #000;
+  border: none;
+}
+
+.pricing-card__btn--ultra:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(217, 119, 6, 0.3);
+}
+
 .btn--outline {
   background: transparent;
   color: var(--text-primary);
@@ -338,33 +354,41 @@ button {
 
 /* Mobile Menu */
 .navbar__mobile {
-  display: none;
   position: fixed;
-  top: var(--navbar-height);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(5, 5, 5, 0.98);
-  backdrop-filter: blur(20px);
+  top: 0;
+  left: -100%;
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+  background: var(--bg-card);
+  border-right: 1px solid var(--bg-card-border);
+  box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  z-index: 999;
+  padding: 80px 24px;
+  transition: left 0.3s ease;
+  z-index: 1001;
 }
 
 .navbar__mobile.active {
-  display: flex;
+  left: 0;
 }
 
 .navbar__mobile a {
   font-size: 1.2rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: #fff;
+  margin-bottom: 24px;
 }
 
 .navbar__mobile a:hover {
   color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .navbar__logo span { display: none; }
+  .navbar__toggle { display: flex; }
+  .navbar__links, .navbar__cta { display: none; }
 }
 
 /* ---------- HERO ---------- */
@@ -956,6 +980,13 @@ button {
   align-items: start;
 }
 
+.pricing__grid--4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
 .pricing-card {
   padding: 36px 32px;
   border-radius: var(--radius-xl);
@@ -969,10 +1000,16 @@ button {
   transform: translateY(-4px);
 }
 
-.pricing-card--featured {
+.pricing-card.popular {
   border-color: var(--color-primary);
-  box-shadow: 0 0 60px rgba(234, 88, 12, 0.1);
-  background: linear-gradient(180deg, rgba(234, 88, 12, 0.05) 0%, var(--bg-card) 30%);
+  box-shadow: 0 0 60px rgba(234, 88, 12, 0.12);
+  background: linear-gradient(180deg, rgba(234, 88, 12, 0.06) 0%, var(--bg-card) 35%);
+}
+
+.pricing-card--ultra {
+  border-color: #d97706;
+  box-shadow: 0 0 60px rgba(217, 119, 6, 0.15);
+  background: linear-gradient(180deg, rgba(217, 119, 6, 0.08) 0%, var(--bg-card) 35%);
 }
 
 .pricing-card__popular {
@@ -998,18 +1035,31 @@ button {
   margin-bottom: 12px;
 }
 
-.pricing-card__price {
+.pricing-card__price-block {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 24px;
+}
+
+.pricing-card__currency {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  margin-right: 4px;
+}
+
+.pricing-card__amount {
   font-size: 2.5rem;
   font-weight: 800;
   color: var(--text-primary);
   letter-spacing: -0.03em;
-  margin-bottom: 4px;
 }
 
-.pricing-card__price span {
+.pricing-card__period {
   font-size: 1rem;
   font-weight: 500;
   color: var(--text-tertiary);
+  margin-left: 4px;
 }
 
 .pricing-card__desc {
@@ -1312,14 +1362,8 @@ button {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .pricing__grid {
+  .pricing__grid, .pricing__grid--4 {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .pricing-card:last-child {
-    grid-column: 1 / -1;
-    max-width: 400px;
-    justify-self: center;
   }
 }
 
@@ -1333,16 +1377,16 @@ button {
     padding: 60px 0;
   }
 
+  .navbar__logo span {
+    display: none;
+  }
+
   .navbar__links {
     display: none;
   }
 
   .navbar__cta .btn--outline {
     display: none;
-  }
-
-  .navbar__toggle {
-    display: flex;
   }
 
   .hero {
@@ -1368,14 +1412,11 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .pricing__grid {
+  .pricing__grid, .pricing__grid--4 {
     grid-template-columns: 1fr;
+    gap: 32px;
     max-width: 400px;
     margin: 0 auto;
-  }
-
-  .pricing-card:last-child {
-    max-width: 100%;
   }
 
   .tour__tabs {
@@ -1453,4 +1494,16 @@ button {
 ::selection {
   background: rgba(234, 88, 12, 0.3);
   color: var(--text-primary);
+}
+
+@keyframes gangorra {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(4deg); }
+  50% { transform: rotate(-4deg); }
+  75% { transform: rotate(2deg); }
+}
+
+#cta-nav {
+  animation: gangorra 2.5s infinite ease-in-out;
+  transform-origin: center;
 }

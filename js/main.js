@@ -45,6 +45,32 @@ function initNavbar() {
       });
     });
   }
+
+  // Swipe gesture for mobile menu
+  let startX = 0;
+  document.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  document.addEventListener('touchend', e => {
+    if (!mobileMenu) return;
+    const endX = e.changedTouches[0].clientX;
+    const diffX = endX - startX;
+    
+    // Swipe Right (Open)
+    if (startX < 40 && diffX > 50 && !mobileMenu.classList.contains('active')) {
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      if (toggle) toggle.classList.add('active');
+    }
+    
+    // Swipe Left (Close)
+    if (diffX < -50 && mobileMenu.classList.contains('active')) {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+      if (toggle) toggle.classList.remove('active');
+    }
+  });
 }
 
 /* ---------- Scroll Animations (IntersectionObserver) ---------- */
