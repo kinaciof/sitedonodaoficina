@@ -1071,7 +1071,8 @@ button {
 }
 
 .pricing.section--alt {
-  background-color: #06131d; /* Fundo azul ardósia escuro idêntico ao app */
+  background-color: #06131d;
+  overflow: visible; /* Garante que o hover scale nos cards não seja cortado */
 }
 
 .pricing {
@@ -1093,28 +1094,31 @@ button {
 .pricing__grid--4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 12px;
   align-items: stretch;
+  overflow: visible; /* Necessário para o hover/scale não ser cortado */
 }
 
 .pricing-card {
-  padding: 32px 24px;
-  border-radius: 16px;
-  background: #0b1a24; /* Fundo escuro minimalista do app */
-  border: 1px solid rgba(255, 255, 255, 0.08); /* Borda sutil */
+  padding: 20px 18px; /* Compacto como o app */
+  border-radius: 14px;
+  background: #0b1a24;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
-              border-color 0.3s ease, 
-              box-shadow 0.3s ease;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
   display: flex;
   flex-direction: column;
+  will-change: transform; /* Garante aceleração GPU para o hover */
 }
 
 .pricing-card:hover {
-  transform: translateY(-8px) scale(1.02); /* Efeito de salto elástico suave e premium */
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  z-index: 5;
+  transform: translateY(-6px) scale(1.025);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  z-index: 10;
+  position: relative;
 }
 
 .pricing-card--featured,
@@ -1126,37 +1130,37 @@ button {
 
 .pricing-card--featured:hover {
   border-color: #10b981;
-  box-shadow: 0 15px 30px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 16px 32px rgba(16, 185, 129, 0.22);
 }
 
 .pricing-card--ultra {
-  border: 2px solid #f59e0b; /* Borda laranja/ouro ultra */
+  border: 2px solid #f59e0b;
   box-shadow: none;
   background: #0b1a24;
 }
 
 .pricing-card--ultra:hover {
   border-color: #f59e0b;
-  box-shadow: 0 15px 30px rgba(245, 158, 11, 0.2);
+  box-shadow: 0 16px 32px rgba(245, 158, 11, 0.22);
 }
 
 /* Badges em linha (inline) */
 .pricing-card__name {
-  font-size: 1.35rem;
-  font-weight: 800; /* Extra bold */
+  font-size: 1.1rem; /* Reduzido para ficar compacto como o app */
+  font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
 .pricing-card__badge {
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   font-weight: 800;
   text-transform: uppercase;
-  padding: 3px 8px;
+  padding: 2px 6px;
   border-radius: var(--radius-full);
   letter-spacing: 0.05em;
   white-space: nowrap;
@@ -1175,30 +1179,32 @@ button {
 }
 
 .pricing-card__tagline {
-  font-size: 0.82rem;
-  color: #94a3b8;
-  margin-bottom: 20px;
-  line-height: 1.4;
-  min-height: 38px;
+  font-size: 0.72rem; /* Menor, mais sutil */
+  color: #64748b;
+  margin-bottom: 12px;
+  line-height: 1.35;
+  min-height: 0; /* Sem altura mínima artificial */
 }
 
 .pricing-card__price-block {
   display: flex;
   align-items: baseline;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Linha divisória idêntica ao app */
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .pricing-card__currency {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #64748b;
-  margin-right: 4px;
+  margin-right: 2px;
+  line-height: 1;
+  padding-bottom: 6px; /* Alinha com a base do número */
 }
 
 .pricing-card__amount {
-  font-size: 2.8rem;
+  font-size: 2.0rem; /* Reduzido — mais próximo do app */
   font-weight: 800;
   color: #ffffff;
   letter-spacing: -0.02em;
@@ -1206,16 +1212,16 @@ button {
 }
 
 .pricing-card__period {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: #64748b;
-  margin-left: 4px;
+  margin-left: 3px;
 }
 
 .pricing-card__features {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px; /* Gap compacto igual ao app */
   margin-bottom: 0;
   flex-grow: 1;
 }
@@ -1223,15 +1229,15 @@ button {
 .pricing-card__feature {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.82rem;
-  color: #f1f5f9;
-  line-height: 1.4;
+  gap: 7px;
+  font-size: 0.75rem; /* Fonte menor para caber mais conteúdo com elegância */
+  color: #e2e8f0;
+  line-height: 1.3;
 }
 
 .pricing-card__feature svg {
-  width: 16px;
-  height: 16px;
+  width: 14px; /* Ícones menores para o layout compacto */
+  height: 14px;
   color: #10b981;
   flex-shrink: 0;
 }
