@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initUTMPreservation();
   initLegalModals();
+  initOSCounter();
 });
 
 /* ---------- Navbar ---------- */
@@ -394,4 +395,97 @@ function initLegalModals() {
       closeModal();
     }
   });
+}
+
+/* ---------- OS Abertas Hoje Live Counter ---------- */
+function initOSCounter() {
+  const el = document.getElementById('os-abertas-hoje-val');
+  if (!el) return;
+
+  function updateCounter() {
+    const date = new Date();
+    const day = date.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+    const currentHour = date.getHours();
+    const currentMinute = date.getMinutes();
+    const currentSecond = date.getSeconds();
+    
+    // Seed based on current date to keep maximum stable per day
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const dayOfMonth = date.getDate();
+    const seed = (year * 372) + (month * 31) + dayOfMonth;
+    
+    function pseudorandom(s) {
+      const x = Math.sin(s) * 10000;
+      return x - Math.floor(x);
+    }
+
+    let maxOS = 0;
+    let progress = 0;
+    
+    const currentDayMinutes = currentHour * 60 + currentMinute + currentSecond / 60;
+    
+    if (day === 0) {
+      // Sunday: closed
+      maxOS = 0;
+      progress = 0;
+    } else if (day === 6) {
+      // Saturday: 08:00 to 15:00
+      const minVal = 80;
+      const maxVal = 140;
+      maxOS = Math.floor(minVal + pseudorandom(seed) * (maxVal - minVal));
+      
+      if (currentDayMinutes < 480) {
+        progress = 0;
+      } else if (currentDayMinutes >= 900) {
+        progress = 1.0;
+      } else {
+        // Segment 1: 08:00 - 12:00 (240 mins) -> 70% of OS
+        // Segment 2: 12:00 - 13:00 (60 mins) -> 5% of OS (lunch pause)
+        // Segment 3: 13:00 - 15:00 (120 mins) -> 25% of OS
+        if (currentDayMinutes < 720) {
+          const t = (currentDayMinutes - 480) / 240;
+          progress = t * 0.70;
+        } else if (currentDayMinutes < 780) {
+          const t = (currentDayMinutes - 720) / 60;
+          progress = 0.70 + t * 0.05;
+        } else {
+          const t = (currentDayMinutes - 780) / 120;
+          progress = 0.75 + t * 0.25;
+        }
+      }
+    } else {
+      // Monday to Friday: 08:00 to 18:00
+      const minVal = 180;
+      const maxVal = 290;
+      maxOS = Math.floor(minVal + pseudorandom(seed) * (maxVal - minVal));
+      
+      if (currentDayMinutes < 480) {
+        progress = 0;
+      } else if (currentDayMinutes >= 1080) {
+        progress = 1.0;
+      } else {
+        // Segment 1: 08:00 - 12:00 (240 mins) -> 55% of OS
+        // Segment 2: 12:00 - 13:00 (60 mins) -> 5% of OS (lunch pause)
+        // Segment 3: 13:00 - 18:00 (300 mins) -> 40% of OS
+        if (currentDayMinutes < 720) {
+          const t = (currentDayMinutes - 480) / 240;
+          progress = t * 0.55;
+        } else if (currentDayMinutes < 780) {
+          const t = (currentDayMinutes - 720) / 60;
+          progress = 0.55 + t * 0.05;
+        } else {
+          const t = (currentDayMinutes - 780) / 300;
+          progress = 0.60 + t * 0.40;
+        }
+      }
+    }
+    
+    const currentVal = Math.floor(progress * maxOS);
+    el.innerHTML = `${currentVal} <span style="color:#22c55e;font-size:0.75rem">✓ em dia</span>`;
+  }
+  
+  updateCounter();
+  // Update counter organically every 15 seconds
+  setInterval(updateCounter, 15000);
 }
