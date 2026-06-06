@@ -1070,6 +1070,10 @@ button {
   letter-spacing: 0.02em;
 }
 
+.pricing.section--alt {
+  background-color: #06131d; /* Fundo azul ardósia escuro idêntico ao app */
+}
+
 .pricing {
   padding: 100px 0;
 }
@@ -1094,12 +1098,12 @@ button {
 }
 
 .pricing-card {
-  padding: 24px 20px; /* Reduced padding for compact/minimalist layout */
-  border-radius: var(--radius-xl);
-  background: var(--bg-card);
-  border: 1px solid var(--bg-card-border);
+  padding: 32px 24px;
+  border-radius: 16px;
+  background: #0b1a24; /* Fundo escuro minimalista do app */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Borda sutil */
   position: relative;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
               border-color 0.3s ease, 
               box-shadow 0.3s ease;
   display: flex;
@@ -1107,40 +1111,41 @@ button {
 }
 
 .pricing-card:hover {
-  transform: translateY(-12px) scale(1.04);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transform: translateY(-8px) scale(1.02); /* Efeito de salto elástico suave e premium */
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   z-index: 5;
 }
 
 .pricing-card--featured,
 .pricing-card.popular {
-  border-color: #10b981;
-  box-shadow: 0 0 40px rgba(16, 185, 129, 0.08);
-  background: linear-gradient(180deg, rgba(16, 185, 129, 0.04) 0%, var(--bg-card) 35%);
+  border: 2px solid #10b981; /* Borda verde pro */
+  box-shadow: none;
+  background: #0b1a24;
 }
 
 .pricing-card--featured:hover {
   border-color: #10b981;
-  box-shadow: 0 20px 45px rgba(16, 185, 129, 0.25);
+  box-shadow: 0 15px 30px rgba(16, 185, 129, 0.2);
 }
 
 .pricing-card--ultra {
-  border-color: #f97316;
-  box-shadow: 0 0 40px rgba(249, 115, 22, 0.08);
-  background: linear-gradient(180deg, rgba(249, 115, 22, 0.04) 0%, var(--bg-card) 35%);
+  border: 2px solid #f59e0b; /* Borda laranja/ouro ultra */
+  box-shadow: none;
+  background: #0b1a24;
 }
 
 .pricing-card--ultra:hover {
-  border-color: #f97316;
-  box-shadow: 0 20px 45px rgba(249, 115, 22, 0.25);
+  border-color: #f59e0b;
+  box-shadow: 0 15px 30px rgba(245, 158, 11, 0.2);
 }
 
 /* Badges em linha (inline) */
 .pricing-card__name {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 800; /* Extra bold */
   color: var(--text-primary);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1158,84 +1163,147 @@ button {
 }
 
 .pricing-card__badge--popular {
-  background-color: #10b981;
-  color: #fff;
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .pricing-card__badge--exclusive {
-  background-color: #f97316;
-  color: #000;
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.pricing-card__tagline {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  min-height: 38px;
 }
 
 .pricing-card__price-block {
   display: flex;
   align-items: baseline;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Linha divisória idêntica ao app */
 }
 
 .pricing-card__currency {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text-tertiary);
+  color: #64748b;
   margin-right: 4px;
 }
 
 .pricing-card__amount {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: -0.03em;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 .pricing-card__period {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-tertiary);
+  color: #64748b;
   margin-left: 4px;
-}
-
-.pricing-card__desc {
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-  margin-bottom: 28px;
-  line-height: 1.5;
 }
 
 .pricing-card__features {
   display: flex;
   flex-direction: column;
-  gap: 8px; /* Tighter vertical spacing */
-  margin-bottom: 24px;
-  flex-grow: 1; /* Ensure features area stretches and aligns buttons */
+  gap: 10px;
+  margin-bottom: 0;
+  flex-grow: 1;
 }
 
 .pricing-card__feature {
   display: flex;
   align-items: center;
-  gap: 8px; /* Compact gap */
-  font-size: 0.82rem; /* Compact font size for minimalist feel */
-  color: var(--text-secondary);
+  gap: 10px;
+  font-size: 0.82rem;
+  color: #f1f5f9;
   line-height: 1.4;
 }
 
 .pricing-card__feature svg {
   width: 16px;
   height: 16px;
-  color: #22c55e;
+  color: #10b981;
   flex-shrink: 0;
 }
 
+/* Destaques do texto e ícones */
+.pricing-card__feature--highlight {
+  color: #f59e0b !important;
+  font-weight: 600;
+}
+
 .pricing-card__feature--highlight svg {
-  color: #f59e0b;
+  color: #f59e0b !important;
 }
 
-.pricing-card__feature--disabled {
-  color: var(--text-muted);
-  text-decoration: line-through;
+/* Watermarks e Selo Ativo */
+.pricing-card__watermark {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 100px;
+  height: 100px;
+  color: rgba(255, 255, 255, 0.025);
+  pointer-events: none;
+  z-index: 0;
 }
-
-.pricing-card__feature--disabled svg {
-  color: var(--text-muted);
+.pricing-card__watermark svg {
+  width: 100%;
+  height: 100%;
+}
+.pricing-card__watermark--double {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 120px;
+  height: 120px;
+  pointer-events: none;
+  z-index: 0;
+}
+.pricing-card__watermark--double .star-1 {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  top: 5px;
+  right: 5px;
+  color: rgba(255, 255, 255, 0.03);
+}
+.pricing-card__watermark--double .star-2 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: 5px;
+  left: 5px;
+  color: rgba(255, 255, 255, 0.015);
+}
+.pricing-card__active-badge {
+  position: absolute;
+  top: -12px;
+  right: 16px;
+  background-color: #10b981;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  z-index: 2;
+}
+.pricing-card__active-badge svg {
+  stroke-width: 3px;
 }
 
 .pricing-card .btn {
