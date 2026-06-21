@@ -2027,15 +2027,29 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
-        <div class="footer__logo">
-          <div class="footer__logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-              viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path
-                d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z" />
-              <path d="M5 21h14" />
-            </svg></div>
-          <span>Dono da Oficina</span>
+        <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+          <a href="#" class="footer__logo" style="text-decoration: none;">
+            <div class="footer__logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z" />
+                <path d="M5 21h14" />
+              </svg></div>
+            <span>Dono da Oficina</span>
+          </a>
+
+          <!-- Dona APP Cross-link -->
+          <a href="https://donaapp.com.br" target="_blank" class="footer__logo" style="text-decoration: none; opacity: 0.5; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.5'">
+            <div class="footer__logo-icon" style="background-color: #4f46e5; box-shadow: 0 0 10px rgba(79,70,229,0.4);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z" />
+                <path d="M5 21h14" />
+              </svg></div>
+            <span>Dona APP</span>
+          </a>
         </div>
 
         <div class="footer__links">
