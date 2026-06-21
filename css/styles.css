@@ -718,6 +718,10 @@ button {
 }
 
 .feature-card {
+  --card-color: var(--color-primary);
+  --card-glow: var(--color-primary-glow);
+  --card-border: rgba(234, 88, 12, 0.2);
+  
   padding: 32px;
   border-radius: var(--radius-xl);
   background: var(--bg-card);
@@ -727,6 +731,33 @@ button {
   overflow: hidden;
 }
 
+/* Modifiers for Identity */
+.card-blue {
+  --card-color: #3b82f6;
+  --card-glow: rgba(59, 130, 246, 0.1);
+  --card-border: rgba(59, 130, 246, 0.2);
+}
+.card-green {
+  --card-color: #10b981;
+  --card-glow: rgba(16, 185, 129, 0.1);
+  --card-border: rgba(16, 185, 129, 0.2);
+}
+.card-purple {
+  --card-color: #8b5cf6;
+  --card-glow: rgba(139, 92, 246, 0.1);
+  --card-border: rgba(139, 92, 246, 0.2);
+}
+.card-yellow {
+  --card-color: #f59e0b;
+  --card-glow: rgba(245, 158, 11, 0.1);
+  --card-border: rgba(245, 158, 11, 0.2);
+}
+.card-red {
+  --card-color: #ef4444;
+  --card-glow: rgba(239, 68, 68, 0.1);
+  --card-border: rgba(239, 68, 68, 0.2);
+}
+
 .feature-card::before {
   content: '';
   position: absolute;
@@ -734,13 +765,13 @@ button {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  background: linear-gradient(90deg, transparent, var(--card-color), transparent);
   opacity: 0;
   transition: opacity var(--transition-base);
 }
 
 .feature-card:hover {
-  border-color: rgba(234, 88, 12, 0.2);
+  border-color: var(--card-border);
   background: var(--bg-card-hover);
   transform: translateY(-4px);
   box-shadow: var(--shadow-glow);
@@ -754,13 +785,13 @@ button {
   width: 48px;
   height: 48px;
   border-radius: var(--radius-md);
-  background: var(--color-primary-glow);
-  border: 1px solid rgba(234, 88, 12, 0.15);
+  background: var(--card-glow);
+  border: 1px solid var(--card-border);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  color: var(--color-primary);
+  color: var(--card-color);
 }
 
 .feature-card__icon svg {
@@ -799,7 +830,7 @@ button {
 .feature-card__list-item svg {
   width: 14px;
   height: 14px;
-  color: var(--color-primary);
+  color: var(--card-color);
   flex-shrink: 0;
 }
 
