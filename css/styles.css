@@ -238,16 +238,17 @@ button {
   height: var(--navbar-height);
   display: flex;
   align-items: center;
-  background: rgba(5, 5, 5, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid transparent;
+  background: rgba(5, 5, 5, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: all var(--transition-base);
 }
 
 .navbar.scrolled {
   border-bottom-color: var(--border-color);
-  background: rgba(5, 5, 5, 0.95);
+  background: rgba(5, 5, 5, 0.9);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 .navbar__inner {
@@ -289,27 +290,28 @@ button {
 }
 
 .navbar__link {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #cbd5e1;
   transition: color var(--transition-fast);
   position: relative;
+  padding-bottom: 4px;
 }
 
 .navbar__link:hover {
-  color: var(--text-primary);
+  color: #ffffff;
 }
 
 .navbar__link::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: 0;
   left: 0;
   width: 0;
   height: 2px;
   background: var(--color-primary);
   border-radius: 1px;
-  transition: width var(--transition-base);
+  transition: width 0.3s ease;
 }
 
 .navbar__link:hover::after {
